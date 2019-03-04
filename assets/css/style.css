@@ -1,4 +1,8 @@
 #currentWordRow {
     border: 10px solid blue;
-    margin: 10% 10% 15% 0%;
+    margin: 0% auto 15% auto;
+}
+
+body {
+    background-color: rgb(61, 179, 179);
 }
