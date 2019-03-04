@@ -1,8 +1,15 @@
 #currentWordRow {
-    border: 10px solid blue;
+    padding: 0 0 0 50px;
     margin: 0% auto 15% auto;
+    line-height: 250%;
 }
 
-body {
-    background-color: rgb(61, 179, 179);
+h2 {
+    text-align: center;
 }
+
+h1 {
+    text-align: center;
+    margin-bottom: 5%;
+}
+
