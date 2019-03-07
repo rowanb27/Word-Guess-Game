@@ -13,3 +13,6 @@ h1 {
     margin-bottom: 5%;
 }
 
+.col.shadow-lg.p-3.mb-5.rounded {
+    background-color: aliceblue;
+}

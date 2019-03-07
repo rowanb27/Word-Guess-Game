@@ -7,6 +7,8 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> 
   <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+  <script src="/assets/javascript/game.js"></script>
+  
   <title>Word Guess Game | Creator: Robert Rowan</title>
 </head>
 
@@ -16,23 +18,22 @@
       <h1>Word Guess Game</h1>
   </header>
 
-<div class="bg"></div>
   <div class="container">
     
     <div id="scoreboardRow" class="row">
       
-      <div class="col-4 offset-4 shadow-lg p-3 mb-5 bg-white rounded">
+      <div id="shadow" class="col-4 offset-4 shadow-lg p-3 mb-5 rounded">
         
            <div class="row">
-               <div class="col shadow-lg p-3 mb-5 bg-white rounded"><h2>Scoreboard</h2></div>
+               <div class="col shadow-lg p-3 mb-5 rounded"><h2>Scoreboard</h2></div>
            </div>
            <div class="row">
-               <div class="col shadow-lg p-3 mb-5 bg-white rounded">WINS</div>
-               <div class="col shadow-lg p-3 mb-5 bg-white rounded">0</div>
+               <div class="col shadow-lg p-3 mb-5 rounded">WINS</div>
+               <div id="wins-text" class="col shadow-lg p-3 mb-5 rounded"></div>
            </div>
            <div class="row">
-               <div class="col shadow-lg p-3 mb-5 bg-white rounded">LOSSES</div>
-               <div class="col shadow-lg p-3 mb-5 bg-white rounded">0</div>
+               <div class="col shadow-lg p-3 mb-5 rounded">LOSSES</div>
+               <div id="losses-text" class="col shadow-lg p-3 mb-5 rounded"></div>
            </div>
       
       </div>
@@ -48,7 +49,7 @@
            </div>
            <div class="row">
                <div class="col-8">Current Word</div>
-               <div class="col-4">-----------</div>
+               <div id="userchoice-text" class="col-4">-----------</div>
            </div>
            <div class="row">
                <div class="col-8">Number of Guesses Remain</div>
