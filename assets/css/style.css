@@ -1,18 +1,19 @@
-#currentWordRow {
-    padding: 0 0 0 50px;
-    margin: 0% auto 15% auto;
-    line-height: 250%;
+body { 
+background-image: url("../images/fast-food-space-bottom_23-2147695664.jpg");
+background-repeat: no-repeat;
+background-size: cover;
+color: white;
 }
 
-h2 {
-    text-align: center;
+.container {
+    position: relative;
+    left: 21%;
+    bottom: 40%;
+    padding-top: 21%;
+    color: white;
+    
 }
 
-h1 {
-    text-align: center;
-    margin-bottom: 5%;
-}
-
-.col.shadow-lg.p-3.mb-5.rounded {
-    background-color: aliceblue;
+.card {
+    background-color: transparent;
 }

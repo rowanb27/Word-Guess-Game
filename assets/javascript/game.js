@@ -1,107 +1,131 @@
-/*
-var letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O','P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-
-//Choosing a random word by creating an array words to be used
-var words = [
+var fastFood = [
     "mcdonalds",
     "subway",
     "burgerking",
-    "tacobell",
-];
+    "jimmyjohns"    
+]
 
-const maxGuesses = 13;          // Maximum number of guesses player has   
-var guessedLetters = [];        // Stores the letters guessed
-var currentWordIndex;           // Index of the current word in the array
-var guessingWord = [];          // This will be the word we actually build to match the current word
-var remainingGuesses = 0;       // How many tries the player has left
-var gameStarted = false;        // Flag to tell if the game has started
-var hasFinished = false;        // Flag for 'press any key to try again'     
-var wins = 0;                   // How many wins has the player racked up
-
-// Reset our game-level variables
-function resetGame() {
-    remainingGuesses = maxGuesses;
-    gameStarted = false;
-
-     // Use Math.floor to round the random number down to neareset whole.
-    currentWordIndex = Math.floor(Math.random() * words.length);
-
-    // Clear out arrays
-    guessedLetters = [];
-    guessingWord = [];
-
-
-}
-
-//Pck a random word from the array
-var word = words[Math.floor(Math.random() * words.length)];
-
-//Creating an empty array and fill it with underscores(_) to match number of letters in the word
-var answerArray = [];
-
-//Creating for loop
-for (var i = 0; i < word.length; i++) {
-    answerArray[i] = "_";
-}
-
-// Creating variable to contain remaining letters
-var remainingLetters = word.length;
-
-
-
+var randomW = "";
+var lettersOfWord = [];
+var blankSpace = 0;
+var blankCorrect = [];
 var wins = 0;
-var losses = 0;
+var lettersGuessed = [];
+var guessesleft = 13;
 
-var winsText = document.getElementById("wins-text");
-var lossesText = document.getElementById("losses-text");
-var userChoiceText = document.getElementById("userchoice-text");
+randomW = fastFood[Math.floor(Math.random() * 
+fastFood.length)];
+console.log(randomW);
 
+lettersOfWord = randomW.split("");
+console.log('letters of word', lettersOfWord);
 
-*/
-// Choosing a random word
-// Create an array(list) of words
-var words = [
-    "mcdonalds",
-    "subway",
-    "burgerking",
-    "tacobell",
-];
+blankSpace = lettersOfWord.length;
+console.log('blankSpace', blankSpace);
 
-var word = words[Math.floor(Math.random() * words.length)];
+for (var i = 0; i < blankSpace; i++) {
+blankCorrect.push("_");
+}
+console.log("blankCorrect", blankCorrect);
 
-// Set up answer array
-var answerArray = [];
-for (var i = 0; i < word.length; i++) {
-    answerArray[i] = "_";
-};
+var mcd;
+var sub;
+var bur;
+var jim;
 
-// Create variable to keep track of letters that remain to be used guessed
-var remainingLetters = word.length;
+mcd = document.getElementById("mcd");
+sub = document.getElementById("sub");
+bur = document.getElementById("bur");
+jim = document.getElementById("jim");
 
-// The Game Loop
-while (remainingLetters > 0) {
-    // Show the player their progress
-    var el = document.getElementById("demo");
-    el.innerHTML = answerArray.join(" ");
+//Start of game
+document.onkeyup = function(event) {
+   document.getElementById("currentword").innerHTML = "" + blankCorrect.join(" ");
 
-    // Get a guess from the player
-    var guess = prompt("Guess a letter or click Cancel to stop playing.");
-    if (guess === null) {
-        //Exit the game loop
-        break;
-    } else if (guess.length !== 1) {
-        alert("Please enter a single letter");
-    } else {
-        // Update the game state with the guess
-        for (var j = 0; j < word.length; j++) {
-            if (word[j] === guess) {
-                answerArray[j] = guess;
-                remainingLetters--;
-            }
+   console.log(randomW);
+   console.log(lettersOfWord);
+   console.log(blankSpace);
+   console.log(blankCorrect);
+
+   var guessed = String.fromCharCode(event.keyCode).toLocaleLowerCase();
+      checkLetters(guessed);
+
+   complete();  //Help me help you
+
+   console.log(guessed);
+
+   document.getElementById("playerguesses").innerHTML = 
+   " " + lettersGuessed.join(" ");
+
+}
+
+function reset() {
+    guessesleft = 13;
+    lettersGuessed = [];
+    blankCorrect = [];
+    //Game() // ???
+}
+
+function checkLetters(letter) {
+    var letterInWord = false;
+    console.log('blankSpace', blankSpace);
+    for (var i = 0; i < blankSpace; i++) {
+        if (randomW[i] == letter) {
+            letterInWord = true;
         }
     }
-    // The end of the game loop
+
+  if (letterInWord) {
+      for (var i = 0; i < blankSpace; i++) {
+          console.log('inide letter check')
+          console.log(letter);
+          console.log(randomW[i]);
+          if (randomW[i] == letter) {
+              blankCorrect[i] = letter;
+          }
+      }
+  }  else {
+      lettersGuessed.push(letter);
+      guessesleft--;
+  }
+
+  console.log(blankCorrect);
 }
 
-el.innerHTML = answerArray.join(" ");
-alert("Good job: The answer was " + word + ".");
+function complete() {
+    console.log("wins:" + wins + "| letters-guessed:" + lettersGuessed + "| guesses-left:" + guessesleft);
+
+    if (lettersOfWord.toString() == blankCorrect.toString()) {
+        wins++;
+        aud()
+        reset()
+
+        document.getElementById("winstracker").innerHTML = " " + wins;
+
+    } else if (guessesleft === 0) {
+        lettersGuessed++;
+        reset()
+        document.getElementById("lettersguessed").innerHTML
+        = " " + lettersGuessed;
+    }
+    document.getElementById("currentword").innerHTML
+    = " " + blankCorrect.join(" ");
+    // document.getElementById("guesses-left").innerHTML = " " + guessesleft;
+}
+
+// Game ()
+
+
+function aud() {
+    var ost = document.getElementById(randomW + "_ost")
+    ost.play();
+}
+
+
+    
+    
+    
+    
+  //  var titlePic = document.getElementById("titlePic")
+   // titlePic.src("./assets/images/" + randomW + ".gif");
+
