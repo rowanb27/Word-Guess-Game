@@ -50,7 +50,7 @@ document.onkeyup = function(event) {
    var guessed = String.fromCharCode(event.keyCode).toLocaleLowerCase();
       checkLetters(guessed);
 
-   complete();  //Help me help you
+   complete(); 
 
    console.log(guessed);
 
@@ -104,28 +104,19 @@ function complete() {
 
     } else if (guessesleft === 0) {
         lettersGuessed++;
-        reset()
+        reset() 
         document.getElementById("lettersguessed").innerHTML
         = " " + lettersGuessed;
+        
     }
     document.getElementById("currentword").innerHTML
     = " " + blankCorrect.join(" ");
-    // document.getElementById("guesses-left").innerHTML = " " + guessesleft;
+
 }
 
-// Game ()
 
 
 function aud() {
     var ost = document.getElementById(randomW + "_ost")
     ost.play();
 }
-
-
-    
-    
-    
-    
-  //  var titlePic = document.getElementById("titlePic")
-   // titlePic.src("./assets/images/" + randomW + ".gif");
-
